@@ -1,0 +1,104 @@
+clc;
+clear all;
+close all;
+
+
+% Variables Definition
+
+l = 0.4; % Length of the arm [m]
+r = 0.1; % Radius [m]
+theta = 60; % Angle in degrees
+A = 0.01; % Cross-sectional area [m^2]
+P_max=10;
+P_min=1;
+% theta_rad = deg2rad(theta);
+
+
+L = 0.548;
+
+thetqinput = 0 : 0.01 :2*pi ;
+
+beta = asin((r / l) * sin(thetqinput)); %?
+
+d = r*cos(thetqinput)+l*cos(beta);
+
+lpthetq = L - d;
+
+lpmin=0.048;
+lpmax=0.248;
+
+P_theta = P_max*(lpthetq/lpmin).^(-1.4);
+
+tork = r.*cos(thetqinput).*P_theta.*A.*tan(beta) + P_theta.*A.*r.*sin(thetqinput);
+
+%%
+% d_max = 0;%?
+% d_min = 0;%?
+% V_max = 0;%?
+% V_min = 0;%?
+% P_max = 0;%?
+% P_min = 0;%?
+% beta = asind((r / l) * sind(theta)); %?
+% alpha = 180-beta-theta;%?
+% 
+% 
+% 
+% % Calculations
+% 
+% beta_deg = asind((r / l) * sind(theta));
+% 
+% d = r*cosd(theta) + l * cosd(beta_deg);
+% 
+% d_max = r+l;
+% d_min = l-r;
+% 
+% 
+% ratio = (1/10)^(1/-1.4); % Vol_max/Vol_min
+% 
+% 
+% % Calculations
+% delta_V = 2 * r * A; % V_max - V_min
+% V_min = delta_V / (ratio - 1); % Solving for V_min
+% V_max = ratio * V_min; % Solving for V_max
+% 
+% 
+% theta_var = 0:0.01:2*pi; % Steps of 0.01 from 0 to 2π
+% % P_theta = P_max(((V_max(f(r(theta_var))))/V_min))^-1.4
+% result = f(r(theta_var)) / V_min; % Element-wise division
+% P_theta = P_max * result ^ -1.4; % Element-wise exponentiation
+% 
+% 
+% 
+% % P(theta)/P_max = (V(theta)/V_min)^-delta
+% 
+% 
+% 
+% % % Display Results
+% % fprintf('Beta: %.4f degrees\n', beta_deg);
+% % fprintf('d: %.4f meters\n', d);
+% % fprintf('d_max: %.4f meters\n', d_max);
+% % fprintf('d_min: %.4f meters\n', d_min);
+% % 
+% % 
+% % 
+% % % Display results
+% % fprintf('V_min: %.6f m^3\n', V_min);
+% % fprintf('V_max: %.6f m^3\n', V_max);
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% % 4. Visualization
+% %figure;
+% %subplot(3, 1, 1);
+% %plot(theta_range, r_effective, 'b', 'LineWidth', 1.5);
+% %xlabel('\theta (rad)');
+% %ylabel('Effective Radius (r_{eff})');
+% %title('Effective Radius vs. \theta');
+% %grid on;
+% 
+% % Display maximum torque and corresponding theta
+% %fprintf('Maximum Torque: %.2f Nm at theta = %.2f radians\n', max_torque, theta_max_torque);
